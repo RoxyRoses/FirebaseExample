@@ -1,11 +1,10 @@
 import 'package:flutter_queue/src/queue/domain/entities/queue_entity.dart';
-import 'package:flutter_queue/src/queue/domain/repositories/queue_repository.dart';
 import 'package:flutter_queue/src/queue/domain/usecases/get_all_queues.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class QueuesRepositoryMock extends Mock implements IQueueRepository{}
-class QueueEntityMock extends Mock implements QueueEntity{}
+import '../../../../mocks/mocks.dart';
+
 
 void main() {
   test('Should return a list of queueEntity', (() {
@@ -18,8 +17,7 @@ void main() {
 
     final result = usecase.call();
 
-    expect(result, matcher);
-
+    expect(result, emits(isA<List<QueueEntity>>()));
 
   }));
 }
